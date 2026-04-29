@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kytary Štekl | Servis a prodej hudebních nástrojů v Plzni</title>
+  <meta name="description" content="Kytary Štekl – opravy, servis, renovace a prodej hudebních nástrojů v Plzni. Kytary, mandolíny, loutny, housle, violy, violoncella a kontrabasy." />
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <style>
+    :root {
+      --bg: #15100c;
+      --bg-soft: #211812;
+      --card: #2d2118;
+      --cream: #fff4df;
+      --muted: #d8c2a4;
+      --gold: #d79b45;
+      --gold-dark: #9e6326;
+      --brown: #5b341e;
+      --line: rgba(255, 244, 223, 0.16);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --radius: 28px;
+      --max: 1180px;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(215, 155, 69, 0.22), transparent 34%),
+        radial-gradient(circle at 85% 12%, rgba(158, 99, 38, 0.25), transparent 32%),
+        linear-gradient(135deg, #120d09, #23160f 52%, #120d09);
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(21, 16, 12, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--gold), #7a431e);
+      color: #1a1009;
+      box-shadow: 0 10px 24px rgba(215, 155, 69, 0.26);
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: normal;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .menu a:hover {
+      color: var(--cream);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 750;
+      cursor: pointer;
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #f2c06e);
+      color: #1d1209;
+      box-shadow: 0 12px 28px rgba(215, 155, 69, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(215, 155, 69, 0.34);
+    }
+
+    .btn-secondary {
+      color: var(--cream);
+      border: 1px solid var(--line);
+      background: rgba(255, 244, 223, 0.05);
+    }
+
+    .hero {
+      padding: 82px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 244, 223, 0.05);
+      font-size: 0.92rem;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.65rem, 7vw, 5.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      max-width: 850px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: clamp(1.02rem, 2vw, 1.22rem);
+      max-width: 670px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 670px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      background: rgba(255, 244, 223, 0.045);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 520px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background:
+        linear-gradient(160deg, rgba(255, 244, 223, 0.12), rgba(255, 244, 223, 0.02)),
+        radial-gradient(circle at 50% 12%, rgba(215, 155, 69, 0.35), transparent 34%),
+        #241810;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+
+    .guitar-visual {
+      position: absolute;
+      inset: 36px 28px 28px;
+      border-radius: 240px 240px 80px 80px;
+      background:
+        radial-gradient(circle at 50% 72%, #7c451f 0 9%, #21140c 10% 13%, transparent 14%),
+        radial-gradient(circle at 50% 68%, #c97f32 0 30%, #7b3f1a 31% 48%, #3a2114 49% 53%, transparent 54%),
+        linear-gradient(90deg, transparent 46%, #e3b46e 47% 53%, transparent 54%),
+        linear-gradient(180deg, #422415, #a96428 42%, #2d1b11);
+      opacity: 0.94;
+      transform: rotate(-7deg);
+      filter: drop-shadow(0 30px 32px rgba(0,0,0,0.45));
+    }
+
+    .guitar-neck {
+      position: absolute;
+      left: 50%;
+      top: -20px;
+      width: 54px;
+      height: 300px;
+      transform: translateX(-50%) rotate(-7deg);
+      border-radius: 18px;
+      background: linear-gradient(90deg, #6a3b20, #d49a55, #6a3b20);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.13);
+    }
+
+    .floating-note {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      width: min(84%, 360px);
+      border-radius: 24px;
+      padding: 20px;
+      background: rgba(21, 16, 12, 0.78);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .floating-note strong {
+      color: var(--gold);
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,244,223,0.075), rgba(255,244,223,0.025));
+      border-radius: 26px;
+      padding: 24px;
+      min-height: 230px;
+      transition: 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(180deg, rgba(255,244,223,0.11), rgba(255,244,223,0.035));
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(215, 155, 69, 0.15);
+      color: var(--gold);
+      margin-bottom: 18px;
+      font-size: 1.35rem;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin-left: 18px;
+    }
+
+    .price-wrap {
+      display: grid;
+      grid-template-columns: 1fr 0.75fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .price-list {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(255,244,223,0.045);
+    }
+
+    .price-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .price-row:last-child {
+      border-bottom: 0;
+    }
+
+    .price-row span {
+      color: var(--muted);
+    }
+
+    .price-row strong {
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .notice {
+      border-radius: 28px;
+      padding: 28px;
+      background: linear-gradient(135deg, rgba(215,155,69,0.18), rgba(255,244,223,0.055));
+      border: 1px solid rgba(215,155,69,0.28);
+    }
+
+    .notice h3 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .notice p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .brands {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .brand-card {
+      padding: 28px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: rgba(255,244,223,0.045);
+    }
+
+    .brand-card h3 {
+      color: var(--gold);
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .brand-card p {
+      color: var(--muted);
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+    }
+
+    .contact-box,
+    .map-box {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255,244,223,0.045);
+      padding: 28px;
+    }
+
+    .contact-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-item:last-child {
+      border-bottom: 0;
+    }
+
+    .contact-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .contact-item strong {
+      font-size: 1.08rem;
+    }
+
+    .map-placeholder {
+      min-height: 320px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+      background:
+        linear-gradient(45deg, rgba(215,155,69,0.15) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(215,155,69,0.12) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(215,155,69,0.12) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(215,155,69,0.12) 75%),
+        #1c130d;
+      background-size: 44px 44px;
+      background-position: 0 0, 0 22px, 22px -22px, -22px 0;
+    }
+
+    .cta {
+      margin: 30px 0 78px;
+    }
+
+    .cta-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 26px;
+      padding: 34px;
+      border-radius: 32px;
+      background: linear-gradient(135deg, #d79b45, #7b421d);
+      color: #1b1008;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .cta-box p {
+      max-width: 620px;
+      margin-top: 10px;
+      color: rgba(27, 16, 8, 0.78);
+    }
+
+    .cta-box .btn {
+      background: #1b1008;
+      color: var(--cream);
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 940px) {
+      .menu {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .hero-grid,
+      .price-wrap,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: 440px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 22px, var(--max));
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .brand small {
+        display: none;
+      }
+
+      .topbar .btn {
+        padding: 10px 13px;
+        font-size: 0.86rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.55rem, 16vw, 4rem);
+      }
+
+      .stats,
+      .cards,
+      .brands {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: 360px;
+      }
+
+      .floating-note {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        width: auto;
+      }
+
+      section {
+        padding: 48px 0;
+      }
+
+      .price-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .cta-box {
+        align-items: start;
+        flex-direction: column;
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Kytary Štekl domů">
+        <span class="brand-mark">♪</span>
+        <span>Kytary Štekl<small>Opravy a prodej hudebních nástrojů</small></span>
+      </a>
+
+      <nav class="menu" aria-label="Hlavní navigace">
+        <a href="#sluzby">Služby</a>
+        <a href="#cenik">Ceník</a>
+        <a href="#nabidka">Nabídka</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+
+      <a class="btn btn-primary" href="#kontakt">Objednat servis</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Specializovaná opravna v Plzeňském kraji</div>
+          <h1>Servis, opravy a prodej <span>kytar</span></h1>
+          <p class="hero-text">
+            Poctivý servis hudebních nástrojů v Plzni. Opravujeme kytary, mandolíny, loutny i smyčcové nástroje. Nabízíme seřízení, renovace, zakázkovou výrobu, poradenství a prodej vybraných nástrojů.
+          </p>
+          <div class="hero-actions">
+            <a href="#kontakt" class="btn btn-primary">Domluvit opravu</a>
+            <a href="#cenik" class="btn btn-secondary">Zobrazit ceník</a>
+          </div>
+          <div class="stats" aria-label="Rychlé informace">
+            <div class="stat"><strong>2–3 dny</strong><span>běžné opravy</span></div>
+            <div class="stat"><strong>2 roky</strong><span>záruka na opravy a prodej</span></div>
+            <div class="stat"><strong>Plzeň</strong><span>Martinská 1/10</span></div>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-label="Ilustrace kytary">
+          <div class="guitar-neck"></div>
+          <div class="guitar-visual"></div>
+          <div class="floating-note">
+            <strong>Řemeslný přístup.</strong><br />
+            Od výměny strun až po renovaci starších nástrojů a stavbu na zakázku.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sluzby">
+      <div class="container">
+        <div class="section-head">
+          <h2>Co děláme</h2>
+          <p>Servis pro běžné hráče, studenty, školy i náročnější muzikanty. Cílem je nástroj, který dobře ladí, pohodlně se na něj hraje a vydrží.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">🛠</div>
+            <h3>Servis a opravy</h3>
+            <p>Opravy všech druhů kytar, mandolín, louten, houslí, smyčců, viol, violoncell a kontrabasů.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🎚</div>
+            <h3>Seřízení nástroje</h3>
+            <p>Ladění, seřízení dohmatu, úprava kobylky, mechaniky, pražců a další práce podle stavu nástroje.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">✨</div>
+            <h3>Renovace</h3>
+            <p>Citlivé opravy starších a poškozených nástrojů včetně náročnějších zásahů a lakování po dohodě.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🎸</div>
+            <h3>Zakázková výroba</h3>
+            <p>Klasické španělské kytary, folk, bluegrass a country kytary, mandolíny a historické nástroje.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🪕</div>
+            <h3>Prodej nástrojů</h3>
+            <p>Mistrovské nástroje Schneider a Pablo Vitaso, zejména kytary, loutny a ukulele s dvouletou zárukou.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">💬</div>
+            <h3>Poradenství</h3>
+            <p>Pomoc s výběrem nástroje, příslušenství a řešením potíží, které ovlivňují hratelnost nebo zvuk.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cenik">
+      <div class="container">
+        <div class="section-head">
+          <h2>Orientační ceník</h2>
+          <p>Ceny jsou uvedeny včetně DPH. Náročnější opravy, lakování a atypické zásahy se řeší individuálně podle stavu nástroje.</p>
+        </div>
+
+        <div class="price-wrap">
+          <div class="price-list">
+            <div class="price-row"><span>Výměna strun</span><strong>120 Kč</strong></div>
+            <div class="price-row"><span>Výměna mechaniky</span><strong>150 Kč</strong></div>
+            <div class="price-row"><span>Ladění kobylky a seřízení dohmatu</span><strong>350 Kč</strong></div>
+            <div class="price-row"><span>Výměna pražců včetně materiálu</span><strong>980 Kč</strong></div>
+            <div class="price-row"><span>Výměna celého krku včetně materiálu</span><strong>980 Kč</strong></div>
+            <div class="price-row"><span>Srovnání hmatníku</span><strong>280 Kč</strong></div>
+            <div class="price-row"><span>Ladění nástroje</span><strong>60 Kč</strong></div>
+            <div class="price-row"><span>Opravy laku</span><strong>dle dohody</strong></div>
+          </div>
+
+          <aside class="notice">
+            <h3>Nevíte, co přesně nástroj potřebuje?</h3>
+            <p>Přineste ho na posouzení. U běžných oprav se často dá rychle odhadnout rozsah práce i termín.</p>
+            <a href="#kontakt" class="btn btn-primary">Domluvit návštěvu</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="nabidka">
+      <div class="container">
+        <div class="section-head">
+          <h2>Nabídka nástrojů</h2>
+          <p>Aktuální skladová nabídka se může měnit. Nástroje a příslušenství je možné objednat také z vybraného katalogu.</p>
+        </div>
+
+        <div class="brands">
+          <article class="brand-card">
+            <h3>Kytary Schneider</h3>
+            <p>Rodinná tradice výroby nástrojů sahající do roku 1924. Vhodné pro hráče, kteří hledají kvalitní nástroj s řemeslným základem.</p>
+          </article>
+
+          <article class="brand-card">
+            <h3>Kytary Pablo Vitaso</h3>
+            <p>Nástroje stavěné z kvalitního přírodně vysoušeného dřeva s pečlivou povrchovou úpravou a propracovanými detaily.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Kde nás najdete</h2>
+          <p>Opravna a malý obchůdek se nachází v centru Plzně, blízko zastávky PMDP Mrakodrap.</p>
+        </div>
+
+        <div class="contact">
+          <div class="contact-box">
+            <div class="contact-item">
+              <span>Adresa</span>
+              <strong>Martinská 1/10, Plzeň 1</strong>
+            </div>
+            <div class="contact-item">
+              <span>Majitel</span>
+              <strong>Karel Štekl</strong>
+            </div>
+            <div class="contact-item">
+              <span>IČO</span>
+              <strong>45389551</strong>
+            </div>
+            <div class="contact-item">
+              <span>Dostupnost MHD</span>
+              <strong>Zastávka Mrakodrap, trolejbusy 11, 13, 15, 16, 17 a autobus 28</strong>
+            </div>
+            <div class="hero-actions" style="margin: 22px 0 0;">
+              <a class="btn btn-primary" href="https://maps.google.com/?q=Martinsk%C3%A1%201%2F10%2C%20Plze%C5%88%201" target="_blank" rel="noopener">Navigovat</a>
+              <a class="btn btn-secondary" href="mailto:karelstekl@outlook.cz">Napsat e-mail</a>
+            </div>
+          </div>
+
+          <div class="map-box">
+            <div class="map-placeholder">
+              <div>
+                <strong style="color: var(--gold); font-size: 1.3rem;">Mapa / vložené Google Maps</strong><br />
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1533.0152488729639!2d13.376314936258721!3d49.744416057222516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470af1e4906f94af%3A0x1bae690f8ccbefbf!2zTWFydGluc2vDoSAxMC8xLCAzMDEgMDAgUGx6ZcWIIDM!5e0!3m2!1scs!2scz!4v1777375690358!5m2!1scs!2scz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container cta">
+      <div class="cta-box">
+        <div>
+          <h2>Potřebuje vaše kytara seřídit?</h2>
+          <p>Ozvěte se nebo se zastavte s nástrojem. Běžné servisní práce bývají hotové během několika dnů.</p>
+        </div>
+        <a class="btn" href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© Kytary Štekl – opravy a prodej hudebních nástrojů</span>
+      <span>❤️Gampopa</span>
+    </div>
+  </footer>
+</body>
+</html>
