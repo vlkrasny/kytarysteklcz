@@ -1,624 +1,249 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kytary Štekl | Servis a prodej hudebních nástrojů v Plzni</title>
-  <meta name="description" content="Kytary Štekl – opravy, servis, renovace a prodej hudebních nástrojů v Plzni. Kytary, mandolíny, loutny, housle, violy, violoncella a kontrabasy." />
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kytary Štekl | Servis, opravy a prodej hudebních nástrojů v Plzni</title>
+  <meta name="description" content="Moderní jednostránkový návrh webu pro Kytary Štekl – opravy, servis, prodej a zakázková výroba hudebních nástrojů v Plzni." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #15100c;
-      --bg-soft: #211812;
-      --card: #2d2118;
-      --cream: #fff4df;
-      --muted: #d8c2a4;
-      --gold: #d79b45;
-      --gold-dark: #9e6326;
-      --brown: #5b341e;
-      --line: rgba(255, 244, 223, 0.16);
-      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-      --radius: 28px;
-      --max: 1180px;
-      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    :root{
+      --bg:#10100f;
+      --bg-2:#161514;
+      --panel:#1d1b19;
+      --panel-2:#24211e;
+      --text:#f3eee6;
+      --muted:#c9bca9;
+      --soft:#938773;
+      --line:#3b3329;
+      --gold:#e4bd4f;
+      --gold-2:#c9952d;
+      --wood:#7a3f1d;
+      --mahogany:#552815;
+      --green:#6d7a58;
+      --danger:#d36b47;
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+      --radius:22px;
+      --container:1180px;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--font);
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Manrope,system-ui,-apple-system,Segoe UI,sans-serif;
       background:
-        radial-gradient(circle at 15% 0%, rgba(215, 155, 69, 0.22), transparent 34%),
-        radial-gradient(circle at 85% 12%, rgba(158, 99, 38, 0.25), transparent 32%),
-        linear-gradient(135deg, #120d09, #23160f 52%, #120d09);
-      color: var(--cream);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin-inline: auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(21, 16, 12, 0.78);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-    }
-
-    .brand-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--gold), #7a431e);
-      color: #1a1009;
-      box-shadow: 0 10px 24px rgba(215, 155, 69, 0.26);
-    }
-
-    .brand small {
-      display: block;
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 0.78rem;
-      letter-spacing: normal;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .menu a:hover {
-      color: var(--cream);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 20px;
-      font-weight: 750;
-      cursor: pointer;
-      transition: 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold), #f2c06e);
-      color: #1d1209;
-      box-shadow: 0 12px 28px rgba(215, 155, 69, 0.28);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 38px rgba(215, 155, 69, 0.34);
-    }
-
-    .btn-secondary {
-      color: var(--cream);
-      border: 1px solid var(--line);
-      background: rgba(255, 244, 223, 0.05);
-    }
-
-    .hero {
-      padding: 82px 0 56px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 13px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255, 244, 223, 0.05);
-      font-size: 0.92rem;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.65rem, 7vw, 5.6rem);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
-      max-width: 850px;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 span {
-      color: var(--gold);
-    }
-
-    .hero-text {
-      color: var(--muted);
-      font-size: clamp(1.02rem, 2vw, 1.22rem);
-      max-width: 670px;
-      margin-bottom: 30px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 34px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      max-width: 670px;
-    }
-
-    .stat {
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 16px;
-      background: rgba(255, 244, 223, 0.045);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.4rem;
-      color: var(--gold);
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .hero-card {
-      position: relative;
-      min-height: 520px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background:
-        linear-gradient(160deg, rgba(255, 244, 223, 0.12), rgba(255, 244, 223, 0.02)),
-        radial-gradient(circle at 50% 12%, rgba(215, 155, 69, 0.35), transparent 34%),
-        #241810;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--line);
-    }
-
-    .guitar-visual {
-      position: absolute;
-      inset: 36px 28px 28px;
-      border-radius: 240px 240px 80px 80px;
-      background:
-        radial-gradient(circle at 50% 72%, #7c451f 0 9%, #21140c 10% 13%, transparent 14%),
-        radial-gradient(circle at 50% 68%, #c97f32 0 30%, #7b3f1a 31% 48%, #3a2114 49% 53%, transparent 54%),
-        linear-gradient(90deg, transparent 46%, #e3b46e 47% 53%, transparent 54%),
-        linear-gradient(180deg, #422415, #a96428 42%, #2d1b11);
-      opacity: 0.94;
-      transform: rotate(-7deg);
-      filter: drop-shadow(0 30px 32px rgba(0,0,0,0.45));
-    }
-
-    .guitar-neck {
-      position: absolute;
-      left: 50%;
-      top: -20px;
-      width: 54px;
-      height: 300px;
-      transform: translateX(-50%) rotate(-7deg);
-      border-radius: 18px;
-      background: linear-gradient(90deg, #6a3b20, #d49a55, #6a3b20);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.13);
-    }
-
-    .floating-note {
-      position: absolute;
-      right: 24px;
-      bottom: 24px;
-      width: min(84%, 360px);
-      border-radius: 24px;
-      padding: 20px;
-      background: rgba(21, 16, 12, 0.78);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(12px);
-    }
-
-    .floating-note strong {
-      color: var(--gold);
-    }
-
-    section {
-      padding: 70px 0;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 28px;
-    }
-
-    .section-head h2 {
-      font-size: clamp(2rem, 4vw, 3.3rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      max-width: 560px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,244,223,0.075), rgba(255,244,223,0.025));
-      border-radius: 26px;
-      padding: 24px;
-      min-height: 230px;
-      transition: 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      background: linear-gradient(180deg, rgba(255,244,223,0.11), rgba(255,244,223,0.035));
-    }
-
-    .icon {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 16px;
-      background: rgba(215, 155, 69, 0.15);
-      color: var(--gold);
-      margin-bottom: 18px;
-      font-size: 1.35rem;
-    }
-
-    .card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 10px;
-    }
-
-    .card p,
-    .card li {
-      color: var(--muted);
-    }
-
-    .card ul {
-      margin-left: 18px;
-    }
-
-    .price-wrap {
-      display: grid;
-      grid-template-columns: 1fr 0.75fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .price-list {
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      overflow: hidden;
-      background: rgba(255,244,223,0.045);
-    }
-
-    .price-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      padding: 17px 20px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .price-row:last-child {
-      border-bottom: 0;
-    }
-
-    .price-row span {
-      color: var(--muted);
-    }
-
-    .price-row strong {
-      color: var(--gold);
-      white-space: nowrap;
-    }
-
-    .notice {
-      border-radius: 28px;
-      padding: 28px;
-      background: linear-gradient(135deg, rgba(215,155,69,0.18), rgba(255,244,223,0.055));
-      border: 1px solid rgba(215,155,69,0.28);
-    }
-
-    .notice h3 {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-    }
-
-    .notice p {
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .brands {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .brand-card {
-      padding: 28px;
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      background: rgba(255,244,223,0.045);
-    }
-
-    .brand-card h3 {
-      color: var(--gold);
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-
-    .brand-card p {
-      color: var(--muted);
-    }
-
-    .contact {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 22px;
-    }
-
-    .contact-box,
-    .map-box {
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: rgba(255,244,223,0.045);
-      padding: 28px;
-    }
-
-    .contact-item {
-      padding: 16px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .contact-item:last-child {
-      border-bottom: 0;
-    }
-
-    .contact-item span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .contact-item strong {
-      font-size: 1.08rem;
-    }
-
-    .map-placeholder {
-      min-height: 320px;
-      border-radius: 22px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      color: var(--muted);
-      background:
-        linear-gradient(45deg, rgba(215,155,69,0.15) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(215,155,69,0.12) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, rgba(215,155,69,0.12) 75%),
-        linear-gradient(-45deg, transparent 75%, rgba(215,155,69,0.12) 75%),
-        #1c130d;
-      background-size: 44px 44px;
-      background-position: 0 0, 0 22px, 22px -22px, -22px 0;
-    }
-
-    .cta {
-      margin: 30px 0 78px;
-    }
-
-    .cta-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 26px;
-      padding: 34px;
-      border-radius: 32px;
-      background: linear-gradient(135deg, #d79b45, #7b421d);
-      color: #1b1008;
-      box-shadow: var(--shadow);
-    }
-
-    .cta-box h2 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-    }
-
-    .cta-box p {
-      max-width: 620px;
-      margin-top: 10px;
-      color: rgba(27, 16, 8, 0.78);
-    }
-
-    .cta-box .btn {
-      background: #1b1008;
-      color: var(--cream);
-    }
-
-    footer {
-      padding: 30px 0;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 940px) {
-      .menu {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 54px;
-      }
-
-      .hero-grid,
-      .price-wrap,
-      .contact {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card {
-        min-height: 440px;
-      }
-
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .section-head {
-        align-items: start;
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        width: min(100% - 22px, var(--max));
-      }
-
-      .nav {
-        min-height: 68px;
-      }
-
-      .brand small {
-        display: none;
-      }
-
-      .topbar .btn {
-        padding: 10px 13px;
-        font-size: 0.86rem;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.55rem, 16vw, 4rem);
-      }
-
-      .stats,
-      .cards,
-      .brands {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card {
-        min-height: 360px;
-      }
-
-      .floating-note {
-        left: 14px;
-        right: 14px;
-        bottom: 14px;
-        width: auto;
-      }
-
-      section {
-        padding: 48px 0;
-      }
-
-      .price-row {
-        grid-template-columns: 1fr;
-        gap: 4px;
-      }
-
-      .cta-box {
-        align-items: start;
-        flex-direction: column;
-        padding: 24px;
-      }
+        radial-gradient(circle at 18% 8%, rgba(228,189,79,.12), transparent 28rem),
+        radial-gradient(circle at 90% 18%, rgba(122,63,29,.16), transparent 30rem),
+        linear-gradient(180deg,#0d0d0c 0%, var(--bg) 42%, #0b0b0a 100%);
+      color:var(--text);
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--container), calc(100% - 40px));margin-inline:auto}
+    .eyebrow{
+      color:var(--gold);font-size:.76rem;text-transform:uppercase;letter-spacing:.16em;font-weight:800;
+    }
+    .serif{font-family:"Playfair Display",Georgia,serif}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:.65rem;
+      min-height:48px;padding:0 1.15rem;border-radius:999px;border:1px solid transparent;
+      font-weight:800;transition:.25s ease;cursor:pointer;white-space:nowrap;
+    }
+    .btn-primary{background:var(--gold);color:#261b00;box-shadow:0 14px 36px rgba(228,189,79,.18)}
+    .btn-primary:hover{transform:translateY(-2px);background:#f1cb62}
+    .btn-ghost{border-color:rgba(228,189,79,.45);color:var(--gold);background:rgba(228,189,79,.04)}
+    .btn-ghost:hover{background:rgba(228,189,79,.12);transform:translateY(-2px)}
+
+    header{
+      position:sticky;top:0;z-index:50;background:rgba(13,13,12,.82);backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(228,189,79,.12);
+    }
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:1.25rem}
+    .brand{display:flex;align-items:center;gap:.85rem;min-width:max-content}
+    .mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--wood));display:grid;place-items:center;color:#120d06;font-weight:900;box-shadow:0 8px 24px rgba(228,189,79,.17)}
+    .brand strong{font-family:"Playfair Display",Georgia,serif;font-size:1.35rem;line-height:1;color:var(--gold)}
+    .brand span{display:block;color:var(--muted);font-size:.72rem;margin-top:.2rem;letter-spacing:.08em;text-transform:uppercase}
+    .links{display:flex;align-items:center;gap:1.35rem;color:var(--muted);font-size:.94rem}
+    .links a{position:relative;transition:.2s ease}
+    .links a:hover{color:var(--gold)}
+    .links a::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:2px;background:var(--gold);transform:scaleX(0);transition:.2s ease;transform-origin:left}
+    .links a:hover::after{transform:scaleX(1)}
+    .menu-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--text);border-radius:12px;padding:.7rem}
+
+    .hero{padding:86px 0 64px}
+    .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:center}
+    h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(2.7rem,7vw,6.2rem);line-height:.98;margin:.7rem 0 1.2rem;letter-spacing:-.05em}
+    .lead{color:var(--muted);font-size:clamp(1.05rem,1.7vw,1.26rem);line-height:1.75;max-width:670px}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+    .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:2.5rem;max-width:720px}
+    .trust-card{background:rgba(29,27,25,.74);border:1px solid rgba(228,189,79,.12);border-radius:18px;padding:1rem;box-shadow:0 14px 42px rgba(0,0,0,.22)}
+    .trust-card b{display:block;font-size:1.35rem;color:var(--gold);font-family:"Playfair Display",Georgia,serif}
+    .trust-card span{color:var(--muted);font-size:.9rem}
+    .hero-visual{position:relative;min-height:560px}
+    .photo-stack{position:absolute;inset:0;border-radius:var(--radius);overflow:hidden;background:linear-gradient(135deg,#2a1710,#0d0d0c);box-shadow:var(--shadow);border:1px solid rgba(228,189,79,.16)}
+    .photo-stack::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.78));z-index:1}
+    .photo-stack img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.07)}
+    .floating-card{position:absolute;z-index:2;left:-28px;bottom:36px;width:min(330px,80%);background:rgba(24,22,20,.88);backdrop-filter:blur(14px);border:1px solid rgba(228,189,79,.18);border-radius:20px;padding:1.2rem;box-shadow:var(--shadow)}
+    .floating-card h3{margin:.3rem 0 .55rem;font-family:"Playfair Display",Georgia,serif;font-size:1.45rem}
+    .floating-card p{margin:0;color:var(--muted);line-height:1.6;font-size:.96rem}
+    .badge{position:absolute;right:24px;top:24px;z-index:2;background:var(--gold);color:#201600;border-radius:999px;padding:.6rem 1rem;font-weight:900;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+
+    section{padding:72px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:2rem;margin-bottom:2rem}
+    h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(2.1rem,4vw,3.8rem);line-height:1.05;margin:.35rem 0 0;letter-spacing:-.035em}
+    .section-head p{color:var(--muted);line-height:1.7;max-width:470px;margin:0}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .card{background:linear-gradient(180deg,rgba(36,33,30,.98),rgba(26,24,22,.96));border:1px solid rgba(228,189,79,.11);border-radius:var(--radius);padding:1.45rem;box-shadow:0 18px 60px rgba(0,0,0,.28);position:relative;overflow:hidden}
+    .card::after{content:"";position:absolute;right:-80px;top:-80px;width:180px;height:180px;border-radius:50%;background:rgba(228,189,79,.08)}
+    .icon{width:48px;height:48px;border-radius:16px;background:rgba(228,189,79,.11);display:grid;place-items:center;color:var(--gold);font-size:1.4rem;margin-bottom:1rem}
+    .card h3{font-family:"Playfair Display",Georgia,serif;font-size:1.55rem;margin:0 0 .7rem}
+    .card p{color:var(--muted);line-height:1.7;margin:0}
+    .tags{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}
+    .tag{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:#f6e2c7;background:rgba(122,63,29,.38);border:1px solid rgba(228,189,79,.12);border-radius:999px;padding:.42rem .62rem;font-weight:800}
+
+    .workshop{display:grid;grid-template-columns:.88fr 1.12fr;gap:28px;align-items:stretch}
+    .workshop .image{border-radius:var(--radius);overflow:hidden;min-height:430px;border:1px solid rgba(228,189,79,.14);box-shadow:var(--shadow)}
+    .workshop .image img{height:100%;width:100%;object-fit:cover}
+    .steps{display:grid;gap:14px}
+    .step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start;background:rgba(29,27,25,.78);border:1px solid rgba(228,189,79,.11);border-radius:18px;padding:1.05rem}
+    .num{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--wood));color:#1b1105;display:grid;place-items:center;font-weight:900}
+    .step h3{margin:0 0 .25rem;font-size:1.05rem}
+    .step p{margin:0;color:var(--muted);line-height:1.6}
+
+    .price-wrap{background:linear-gradient(135deg,rgba(85,40,21,.32),rgba(22,21,20,.9));border:1px solid rgba(228,189,79,.14);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .price-grid{display:grid;grid-template-columns:1fr 1fr}
+    .price-item{display:flex;justify-content:space-between;gap:1rem;padding:1.05rem 1.25rem;border-bottom:1px solid rgba(228,189,79,.1);border-right:1px solid rgba(228,189,79,.1)}
+    .price-item:nth-child(2n){border-right:0}
+    .price-item span{color:var(--muted)}
+    .price-item strong{color:var(--gold);white-space:nowrap}
+    .note{padding:1.1rem 1.25rem;color:var(--muted);font-size:.95rem;background:rgba(0,0,0,.18)}
+
+    .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px}
+    .contact-card{background:linear-gradient(180deg,rgba(36,33,30,.96),rgba(17,16,15,.96));border:1px solid rgba(228,189,79,.14);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow)}
+    .contact-list{display:grid;gap:1rem;margin:1.25rem 0 0}
+    .contact-row{display:flex;gap:1rem;align-items:flex-start;padding:1rem;border:1px solid rgba(228,189,79,.1);border-radius:16px;background:rgba(255,255,255,.02)}
+    .contact-row b{display:block;margin-bottom:.15rem}
+    .contact-row span,.contact-row a{color:var(--muted)}
+    form{display:grid;gap:1rem}
+    label{display:grid;gap:.45rem;color:var(--muted);font-weight:700;font-size:.9rem}
+    input,textarea,select{width:100%;background:#0b0b0a;border:1px solid var(--line);border-radius:14px;color:var(--text);padding:.95rem 1rem;font:inherit;outline:none;transition:.2s ease}
+    textarea{min-height:135px;resize:vertical}
+    input:focus,textarea:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(228,189,79,.1)}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+    footer{padding:42px 0;border-top:1px solid rgba(228,189,79,.12);background:#0b0b0a;color:var(--muted)}
+    .foot{display:flex;justify-content:space-between;gap:2rem;align-items:center}
+    .foot strong{color:var(--gold);font-family:"Playfair Display",Georgia,serif;font-size:1.35rem}
+    .source{font-size:.8rem;color:var(--soft);margin-top:.65rem}
+
+
+
+    /* Jemné prémiové animace */
+    @keyframes stringPulse{
+      0%,100%{transform:scaleX(.82);opacity:.30;filter:blur(0)}
+      45%{transform:scaleX(1);opacity:.78;filter:blur(.2px)}
+      65%{transform:scaleX(.93);opacity:.48}
+    }
+    @keyframes noteFloat{
+      0%{transform:translateY(18px) rotate(-8deg);opacity:0}
+      18%{opacity:.9}
+      100%{transform:translateY(-105px) rotate(10deg);opacity:0}
+    }
+    @keyframes shimmer{
+      0%{transform:translateX(-120%) rotate(12deg)}
+      100%{transform:translateX(160%) rotate(12deg)}
+    }
+    @keyframes slowPan{
+      0%,100%{transform:scale(1.04) translate3d(0,0,0)}
+      50%{transform:scale(1.09) translate3d(-10px,8px,0)}
+    }
+    .photo-stack img{animation:slowPan 16s ease-in-out infinite;transform-origin:center}
+    .photo-stack::after{
+      content:"";position:absolute;inset:-20% 45% -20% -35%;z-index:3;
+      background:linear-gradient(90deg,transparent,rgba(255,226,150,.16),transparent);
+      animation:shimmer 7s ease-in-out infinite;pointer-events:none;
+    }
+    .string-animation{position:absolute;z-index:4;left:8%;right:8%;top:17%;height:54%;pointer-events:none;opacity:.95}
+    .string-animation span{
+      position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(228,189,79,.75),rgba(255,245,210,.95),rgba(228,189,79,.55),transparent);
+      transform-origin:center;animation:stringPulse 2.9s ease-in-out infinite;box-shadow:0 0 16px rgba(228,189,79,.18)
+    }
+    .string-animation span:nth-child(1){top:9%;animation-delay:0s}
+    .string-animation span:nth-child(2){top:24%;animation-delay:.18s}
+    .string-animation span:nth-child(3){top:39%;animation-delay:.36s}
+    .string-animation span:nth-child(4){top:54%;animation-delay:.54s}
+    .string-animation span:nth-child(5){top:69%;animation-delay:.72s}
+    .string-animation span:nth-child(6){top:84%;animation-delay:.9s}
+    .music-notes{position:absolute;z-index:5;inset:0;pointer-events:none;overflow:hidden;border-radius:var(--radius)}
+    .music-notes span{
+      position:absolute;bottom:12%;color:rgba(228,189,79,.72);font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.15rem,2vw,2rem);
+      text-shadow:0 0 24px rgba(228,189,79,.22);animation:noteFloat 5.6s ease-in-out infinite;
+    }
+    .music-notes span:nth-child(1){left:18%;animation-delay:.2s}
+    .music-notes span:nth-child(2){left:49%;animation-delay:1.55s;font-size:1.45rem}
+    .music-notes span:nth-child(3){left:74%;animation-delay:3.05s}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease, transform .75s ease}
+    .reveal.in-view{opacity:1;transform:translateY(0)}
+    .card.reveal:nth-child(2), .step.reveal:nth-child(2){transition-delay:.08s}
+    .card.reveal:nth-child(3), .step.reveal:nth-child(3){transition-delay:.16s}
+    .price-item.reveal:nth-child(2n){transition-delay:.05s}
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+      .reveal{opacity:1;transform:none}
+    }
+
+    @media (max-width: 980px){
+      .links{display:none;position:absolute;left:20px;right:20px;top:86px;flex-direction:column;align-items:flex-start;background:rgba(21,20,18,.98);border:1px solid rgba(228,189,79,.16);border-radius:18px;padding:1rem;box-shadow:var(--shadow)}
+      .links.open{display:flex}
+      .menu-toggle{display:inline-grid;place-items:center}
+      .nav .btn-primary{display:none}
+      .hero-grid,.workshop,.contact{grid-template-columns:1fr}
+      .hero{padding-top:54px}
+      .hero-visual{min-height:430px}
+      .floating-card{left:18px;bottom:18px}
+      .cards{grid-template-columns:1fr 1fr}
+      .section-head{display:block}
+      .section-head p{margin-top:1rem}
+    }
+    @media (max-width: 680px){
+      .container{width:min(100% - 28px,var(--container))}
+      .nav{height:70px}
+      .brand strong{font-size:1.08rem}
+      .brand span{font-size:.62rem}
+      .mark{width:38px;height:38px;border-radius:13px}
+      .hero{padding:42px 0 42px}
+      .lead{font-size:1rem}
+      .trust{grid-template-columns:1fr}
+      .hero-visual{min-height:390px}
+      .badge{top:14px;right:14px;font-size:.72rem}
+      section{padding:52px 0}
+      .cards{grid-template-columns:1fr}
+      .price-grid{grid-template-columns:1fr}
+      .price-item{border-right:0}
+      .form-grid{grid-template-columns:1fr}
+      .foot{display:block}
+      .foot p{margin-top:1rem}
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
+  <header>
     <div class="container nav">
-      <a href="#top" class="brand" aria-label="Kytary Štekl domů">
-        <span class="brand-mark">♪</span>
-        <span>Kytary Štekl<small>Opravy a prodej hudebních nástrojů</small></span>
+      <a class="brand" href="#top" aria-label="Kytary Štekl úvod">
+        <div class="mark">Š</div>
+        <div><strong>Kytary Štekl</strong><span>servis · prodej · zakázky</span></div>
       </a>
-
-      <nav class="menu" aria-label="Hlavní navigace">
+      <nav class="links" id="menu" aria-label="Hlavní navigace">
         <a href="#sluzby">Služby</a>
+        <a href="#zakazky">Zakázková výroba</a>
         <a href="#cenik">Ceník</a>
-        <a href="#nabidka">Nabídka</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
-
-      <a class="btn btn-primary" href="#kontakt">Objednat servis</a>
+      <a class="btn btn-primary" href="tel:+420603962629">Zavolat</a>
+      <button class="menu-toggle" id="toggle" aria-label="Otevřít menu">☰</button>
     </div>
   </header>
 
@@ -626,28 +251,34 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Specializovaná opravna v Plzeňském kraji</div>
-          <h1>Servis, opravy a prodej <span>kytar</span></h1>
-          <p class="hero-text">
-            Poctivý servis hudebních nástrojů v Plzni. Opravujeme kytary, mandolíny, loutny i smyčcové nástroje. Nabízíme seřízení, renovace, zakázkovou výrobu, poradenství a prodej vybraných nástrojů.
-          </p>
+          <div class="eyebrow">Opravy a prodej hudebních nástrojů · Plzeň</div>
+          <h1>Poctivý servis pro nástroje, které mají hrát.</h1>
+          <p class="lead">Jednostránkový moderní návrh pro dílnu Karla Štekla: servis kytar a smyčcových nástrojů, seřízení, ladění, prodej nástrojů a zakázková výroba klasických, folk, bluegrass, country i historických nástrojů.</p>
           <div class="hero-actions">
-            <a href="#kontakt" class="btn btn-primary">Domluvit opravu</a>
-            <a href="#cenik" class="btn btn-secondary">Zobrazit ceník</a>
+            <a class="btn btn-primary" href="#kontakt">Domluvit opravu</a>
+            <a class="btn btn-ghost" href="#cenik">Zobrazit orientační ceník</a>
           </div>
-          <div class="stats" aria-label="Rychlé informace">
-            <div class="stat"><strong>2–3 dny</strong><span>běžné opravy</span></div>
-            <div class="stat"><strong>2 roky</strong><span>záruka na opravy a prodej</span></div>
-            <div class="stat"><strong>Plzeň</strong><span>Martinská 1/10</span></div>
+          <div class="trust" aria-label="Hlavní výhody">
+            <div class="trust-card reveal"><b>2–3 dny</b><span>běžné opravy dle informací webu</span></div>
+            <div class="trust-card reveal"><b>2 roky</b><span>záruka k opravě nebo prodeji</span></div>
+            <div class="trust-card reveal"><b>Plzeň</b><span>Martinská 10/1, Jižní Předměstí</span></div>
           </div>
         </div>
-
-        <div class="hero-card" aria-label="Ilustrace kytary">
-          <div class="guitar-neck"></div>
-          <div class="guitar-visual"></div>
-          <div class="floating-note">
-            <strong>Řemeslný přístup.</strong><br />
-            Od výměny strun až po renovaci starších nástrojů a stavbu na zakázku.
+        <div class="hero-visual" aria-hidden="true">
+          <div class="photo-stack">
+            <img src="https://images.unsplash.com/photo-1525201548942-d8732f6617a0?auto=format&fit=crop&w=1200&q=85" alt="Detail akustické kytary v dílně" />
+            <div class="string-animation" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="music-notes" aria-hidden="true">
+              <span>♪</span><span>♩</span><span>♫</span>
+            </div>
+          </div>
+          <div class="badge">ruční práce</div>
+          <div class="floating-card reveal">
+            <div class="eyebrow">dílna a obchod</div>
+            <h3>Nástroj není jen zboží</h3>
+            <p>Design staví na klidné, prémiové atmosféře, detailu dřeva a jednoduché cestě k objednání servisu.</p>
           </div>
         </div>
       </div>
@@ -655,159 +286,130 @@
 
     <section id="sluzby">
       <div class="container">
-        <div class="section-head">
-          <h2>Co děláme</h2>
-          <p>Servis pro běžné hráče, studenty, školy i náročnější muzikanty. Cílem je nástroj, který dobře ladí, pohodlně se na něj hraje a vydrží.</p>
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Co děláme</div>
+            <h2>Servis, opravy a prodej bez zbytečného hluku.</h2>
+          </div>
+          <p>Obsah je zkrácený do přehledných bloků, aby návštěvník hned pochopil, s čím může přijít a jaký typ práce dílna řeší.</p>
         </div>
-
         <div class="cards">
-          <article class="card">
-            <div class="icon">🛠</div>
-            <h3>Servis a opravy</h3>
+          <article class="card reveal">
+            <div class="icon">♬</div>
+            <h3>Servis nástrojů</h3>
             <p>Opravy všech druhů kytar, mandolín, louten, houslí, smyčců, viol, violoncell a kontrabasů.</p>
+            <div class="tags"><span class="tag">kytary</span><span class="tag">smyčce</span><span class="tag">historické nástroje</span></div>
           </article>
-
-          <article class="card">
-            <div class="icon">🎚</div>
-            <h3>Seřízení nástroje</h3>
-            <p>Ladění, seřízení dohmatu, úprava kobylky, mechaniky, pražců a další práce podle stavu nástroje.</p>
+          <article class="card reveal">
+            <div class="icon">◒</div>
+            <h3>Seřízení a ladění</h3>
+            <p>Seřízení dohmatu, ladění kobylky, výměny strun, mechaniky, pražců a další běžné opravy.</p>
+            <div class="tags"><span class="tag">dohmat</span><span class="tag">kobylka</span><span class="tag">pražce</span></div>
           </article>
-
-          <article class="card">
-            <div class="icon">✨</div>
-            <h3>Renovace</h3>
-            <p>Citlivé opravy starších a poškozených nástrojů včetně náročnějších zásahů a lakování po dohodě.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon">🎸</div>
-            <h3>Zakázková výroba</h3>
-            <p>Klasické španělské kytary, folk, bluegrass a country kytary, mandolíny a historické nástroje.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon">🪕</div>
+          <article class="card reveal">
+            <div class="icon">◆</div>
             <h3>Prodej nástrojů</h3>
-            <p>Mistrovské nástroje Schneider a Pablo Vitaso, zejména kytary, loutny a ukulele s dvouletou zárukou.</p>
+            <p>Školní, koncertní i mistrovské nástroje. Důraz na praktickou volbu podle hráče, rozpočtu a účelu.</p>
+            <div class="tags"><span class="tag">školní</span><span class="tag">koncertní</span><span class="tag">mistrovské</span></div>
           </article>
+        </div>
+      </div>
+    </section>
 
-          <article class="card">
-            <div class="icon">💬</div>
-            <h3>Poradenství</h3>
-            <p>Pomoc s výběrem nástroje, příslušenství a řešením potíží, které ovlivňují hratelnost nebo zvuk.</p>
-          </article>
+    <section id="zakazky">
+      <div class="container workshop">
+        <div class="image"><img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1000&q=85" alt="Kytara a pracovní atmosféra dílny"></div>
+        <div>
+          <div class="eyebrow">Zhotovení na zakázku</div>
+          <h2>Nástroj podle ruky, zvuku a stylu hráče.</h2>
+          <p class="lead" style="font-size:1rem;margin-bottom:1.25rem">Zakázková výroba může být na stránce prezentována jako klidný proces: od konzultace přes volbu typu nástroje až po předání a následný servis.</p>
+          <div class="steps">
+            <div class="step reveal"><div class="num">01</div><div><h3>Konzultace a účel nástroje</h3><p>Styl hraní, cílový zvuk, pohodlí, rozpočet a termín.</p></div></div>
+            <div class="step reveal"><div class="num">02</div><div><h3>Výběr typu</h3><p>Klasické španělské kytary, folk, bluegrass, country kytary, mandolíny a historické nástroje.</p></div></div>
+            <div class="step reveal"><div class="num">03</div><div><h3>Práce a servis po předání</h3><p>U složitějších oprav a lakování se termín řeší individuálně podle dohody se zákazníkem.</p></div></div>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="cenik">
       <div class="container">
-        <div class="section-head">
-          <h2>Orientační ceník</h2>
-          <p>Ceny jsou uvedeny včetně DPH. Náročnější opravy, lakování a atypické zásahy se řeší individuálně podle stavu nástroje.</p>
-        </div>
-
-        <div class="price-wrap">
-          <div class="price-list">
-            <div class="price-row"><span>Výměna strun</span><strong>120 Kč</strong></div>
-            <div class="price-row"><span>Výměna mechaniky</span><strong>150 Kč</strong></div>
-            <div class="price-row"><span>Ladění kobylky a seřízení dohmatu</span><strong>350 Kč</strong></div>
-            <div class="price-row"><span>Výměna pražců včetně materiálu</span><strong>980 Kč</strong></div>
-            <div class="price-row"><span>Výměna celého krku včetně materiálu</span><strong>980 Kč</strong></div>
-            <div class="price-row"><span>Srovnání hmatníku</span><strong>280 Kč</strong></div>
-            <div class="price-row"><span>Ladění nástroje</span><strong>60 Kč</strong></div>
-            <div class="price-row"><span>Opravy laku</span><strong>dle dohody</strong></div>
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Orientační ceník</div>
+            <h2>Nejčastější úkony jasně a bez hledání.</h2>
           </div>
-
-          <aside class="notice">
-            <h3>Nevíte, co přesně nástroj potřebuje?</h3>
-            <p>Přineste ho na posouzení. U běžných oprav se často dá rychle odhadnout rozsah práce i termín.</p>
-            <a href="#kontakt" class="btn btn-primary">Domluvit návštěvu</a>
-          </aside>
+          <p>Ceník je vhodné zobrazit přímo na jedné stránce. U oprav laku a složitějších zásahů zůstává domluva individuální.</p>
         </div>
-      </div>
-    </section>
-
-    <section id="nabidka">
-      <div class="container">
-        <div class="section-head">
-          <h2>Nabídka nástrojů</h2>
-          <p>Aktuální skladová nabídka se může měnit. Nástroje a příslušenství je možné objednat také z vybraného katalogu.</p>
-        </div>
-
-        <div class="brands">
-          <article class="brand-card">
-            <h3>Kytary Schneider</h3>
-            <p>Rodinná tradice výroby nástrojů sahající do roku 1924. Vhodné pro hráče, kteří hledají kvalitní nástroj s řemeslným základem.</p>
-          </article>
-
-          <article class="brand-card">
-            <h3>Kytary Pablo Vitaso</h3>
-            <p>Nástroje stavěné z kvalitního přírodně vysoušeného dřeva s pečlivou povrchovou úpravou a propracovanými detaily.</p>
-          </article>
+        <div class="price-wrap">
+          <div class="price-grid">
+            <div class="price-item reveal"><span>Výměna strun</span><strong>120 Kč</strong></div>
+            <div class="price-item reveal"><span>Výměna mechaniky</span><strong>150 Kč</strong></div>
+            <div class="price-item reveal"><span>Ladění kobylky a seřízení dohmatu</span><strong>350 Kč</strong></div>
+            <div class="price-item reveal"><span>Výměna pražců včetně materiálu</span><strong>980 Kč</strong></div>
+            <div class="price-item reveal"><span>Výměna celého krku včetně materiálu</span><strong>980 Kč</strong></div>
+            <div class="price-item reveal"><span>Srovnání hmatníku</span><strong>280 Kč</strong></div>
+            <div class="price-item reveal"><span>Ladění nástroje</span><strong>60 Kč</strong></div>
+            <div class="price-item reveal"><span>Opravy laku</span><strong>dle dohody</strong></div>
+          </div>
+          <div class="note">Ceny jsou uvedené jako orientační převzetí z původního webu a jsou včetně DPH. Před zveřejněním doporučuji aktuálnost ověřit u provozovatele.</div>
         </div>
       </div>
     </section>
 
     <section id="kontakt">
-      <div class="container">
-        <div class="section-head">
-          <h2>Kde nás najdete</h2>
-          <p>Opravna a malý obchůdek se nachází v centru Plzně, blízko zastávky PMDP Mrakodrap.</p>
+      <div class="container contact">
+        <div class="contact-card reveal">
+          <div class="eyebrow">Kontakt</div>
+          <h2>Domluvte si návštěvu dílny.</h2>
+          <div class="contact-list">
+            <div class="contact-row"><div class="icon" style="margin:0">⌖</div><div><b>Adresa</b><span>Martinská 10/1, 301 00 Plzeň – Jižní Předměstí</span></div></div>
+            <div class="contact-row"><div class="icon" style="margin:0">☎</div><div><b>Telefon</b><a href="tel:+420603962629">+420 603 962 629</a></div></div>
+            <div class="contact-row"><div class="icon" style="margin:0">✉</div><div><b>E-mail</b><a href="mailto:karel.stekl@doosan.com">karel.stekl@doosan.com</a></div></div>
+            <div class="contact-row"><div class="icon" style="margin:0">◷</div><div><b>Otevírací doba</b><span>Ověřit před návštěvou telefonicky. Ve veřejném katalogu je uvedeno odpolední otevření ve vybrané dny.</span></div></div>
+          </div>
         </div>
-
-        <div class="contact">
-          <div class="contact-box">
-            <div class="contact-item">
-              <span>Adresa</span>
-              <strong>Martinská 1/10, Plzeň 1</strong>
+        <div class="contact-card reveal">
+          <div class="eyebrow">Rychlá poptávka</div>
+          <h2 style="font-size:clamp(1.9rem,3vw,2.8rem)">Co s nástrojem řešíte?</h2>
+          <form onsubmit="event.preventDefault(); alert('Toto je statický návrh. Formulář je připravený pro napojení na backend nebo e-mail.');">
+            <div class="form-grid">
+              <label>Jméno<input required placeholder="Vaše jméno"></label>
+              <label>Telefon / e-mail<input required placeholder="Kontakt"></label>
             </div>
-            <div class="contact-item">
-              <span>Majitel</span>
-              <strong>Karel Štekl</strong>
-            </div>
-            <div class="contact-item">
-              <span>IČO</span>
-              <strong>45389551</strong>
-            </div>
-            <div class="contact-item">
-              <span>Dostupnost MHD</span>
-              <strong>Zastávka Mrakodrap, trolejbusy 11, 13, 15, 16, 17 a autobus 28</strong>
-            </div>
-            <div class="hero-actions" style="margin: 22px 0 0;">
-              <a class="btn btn-primary" href="https://maps.google.com/?q=Martinsk%C3%A1%201%2F10%2C%20Plze%C5%88%201" target="_blank" rel="noopener">Navigovat</a>
-              <a class="btn btn-secondary" href="mailto:karelstekl@outlook.cz">Napsat e-mail</a>
-            </div>
-          </div>
-
-          <div class="map-box">
-            <div class="map-placeholder">
-              <div>
-                <strong style="color: var(--gold); font-size: 1.3rem;">Mapa / vložené Google Maps</strong><br />
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1533.0152488729639!2d13.376314936258721!3d49.744416057222516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470af1e4906f94af%3A0x1bae690f8ccbefbf!2zTWFydGluc2vDoSAxMC8xLCAzMDEgMDAgUGx6ZcWIIDM!5e0!3m2!1scs!2scz!4v1777375690358!5m2!1scs!2scz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </div>
-            </div>
-          </div>
+            <label>Typ nástroje<select><option>Kytara</option><option>Mandolína / loutna</option><option>Smyčcový nástroj</option><option>Jiný nástroj</option></select></label>
+            <label>Popis problému<textarea placeholder="Např. vysoký dohmat, výměna strun, prasklina, lak, ladění..."></textarea></label>
+            <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
+          </form>
+          <p class="source">Poznámka: pro produkci je potřeba doplnit souhlas se zpracováním osobních údajů a reálné odesílání formuláře.</p>
         </div>
       </div>
     </section>
-
-    <div class="container cta">
-      <div class="cta-box">
-        <div>
-          <h2>Potřebuje vaše kytara seřídit?</h2>
-          <p>Ozvěte se nebo se zastavte s nástrojem. Běžné servisní práce bývají hotové během několika dnů.</p>
-        </div>
-        <a class="btn" href="#kontakt">Kontakt</a>
-      </div>
-    </div>
   </main>
 
   <footer>
-    <div class="container footer-inner">
-      <span>© Kytary Štekl – opravy a prodej hudebních nástrojů</span>
-      <span>❤️Gampopa</span>
+    <div class="container foot">
+      <div><strong>Kytary Štekl</strong><div class="source">Moderní jednostránkový návrh – servis, prodej a zakázková výroba hudebních nástrojů.</div></div>
+      <p>© 2026 · Návrh statické HTML stránky</p>
     </div>
   </footer>
+
+  <script>
+    const toggle = document.getElementById('toggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('open'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+    const revealItems = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    revealItems.forEach(item => revealObserver.observe(item));
+  </script>
 </body>
 </html>
