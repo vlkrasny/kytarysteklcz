@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="cs">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TWSSBGK5');</script>
+<!-- End Google Tag Manager -->
+
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -1159,10 +1167,70 @@
             width: auto;
             min-width: 16px;
           }
+
+          .cookie-notice {
+            position: fixed;
+            left: 50%;
+            bottom: 12px;
+            z-index: 80;
+            display: none;
+            width: min(720px, calc(100% - 24px));
+            transform: translateX(-50%);
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 10px 12px 10px 16px;
+            border: 1px solid rgba(228, 189, 79, 0.14);
+            border-radius: 14px;
+            background: rgba(13, 13, 12, 0.88);
+            color: var(--muted);
+            box-shadow: 0 10px 34px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(14px);
+          }
+
+          .cookie-notice.is-visible {
+            display: flex;
+          }
+
+          .cookie-notice p {
+            margin: 0;
+            font-size: 0.78rem;
+            line-height: 1.45;
+          }
+
+          .cookie-notice button {
+            flex: 0 0 auto;
+            min-height: 34px;
+            padding: 0 0.8rem;
+            border: 1px solid rgba(228, 189, 79, 0.25);
+            border-radius: 999px;
+            background: rgba(228, 189, 79, 0.08);
+            color: var(--gold);
+            font: inherit;
+            font-size: 0.78rem;
+            font-weight: 800;
+            cursor: pointer;
+          }
+
+          .cookie-notice button:hover {
+            background: rgba(228, 189, 79, 0.14);
+          }
+
+          @media (max-width: 640px) {
+            .cookie-notice {
+              align-items: flex-start;
+              bottom: 8px;
+              padding: 10px;
+            }
+          }
         </style>
       </head>
 
       <body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWSSBGK5"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
         <header>
           <div class="container nav">
             <a class="brand" href="#top" aria-label="Kytary Štekl úvod">
@@ -1548,6 +1616,11 @@
           </div>
         </footer>
 
+        <div class="cookie-notice" id="cookieNotice" role="status" aria-live="polite">
+          <p>Tento web používá pouze nezbytné cookies pro správné fungování a pohodlnější návštěvu.</p>
+          <button type="button" id="cookieNoticeClose">Rozumím</button>
+        </div>
+
         <script>
           const toggle = document.getElementById("toggle");
           const menu = document.getElementById("menu");
@@ -1585,6 +1658,32 @@
             revealItems.forEach((item) => revealObserver.observe(item));
           } else {
             revealItems.forEach((item) => item.classList.add("in-view"));
+          }
+
+          const cookieNotice = document.getElementById("cookieNotice");
+          const cookieNoticeClose = document.getElementById("cookieNoticeClose");
+          const cookieNoticeStorageKey = "kytary-stekl-cookie-notice-hidden";
+
+          if (cookieNotice && cookieNoticeClose) {
+            let cookieNoticeHidden = false;
+
+            try {
+              cookieNoticeHidden = localStorage.getItem(cookieNoticeStorageKey) === "true";
+            } catch (error) {
+              cookieNoticeHidden = false;
+            }
+
+            if (!cookieNoticeHidden) {
+              cookieNotice.classList.add("is-visible");
+            }
+
+            cookieNoticeClose.addEventListener("click", () => {
+              try {
+                localStorage.setItem(cookieNoticeStorageKey, "true");
+              } catch (error) {}
+
+              cookieNotice.classList.remove("is-visible");
+            });
           }
         </script>
       </body>
