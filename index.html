@@ -11,13 +11,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-TWSSBGK5');</script>
 <!-- End Google Tag Manager -->
 
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="shortcut icon" href="./favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
   <title>Kytary Štekl | Servis, opravy a prodej hudebních nástrojů v Plzni</title>
   <meta name="description" content="Kytary Štekl v Plzni nabízí opravy a servis kytar, seřízení dohmatu, výměnu strun, prodej kytar, zakázkovou výrobu a opravy hudebních nástrojů.">
+  <link rel="canonical" href="https://kytarystekl.cz/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:site_name" content="Kytary Štekl">
+  <meta property="og:title" content="Kytary Štekl | Servis, opravy a prodej hudebních nástrojů v Plzni">
+  <meta property="og:description" content="Kytary Štekl v Plzni nabízí opravy a servis kytar, seřízení dohmatu, výměnu strun, prodej kytar, zakázkovou výrobu a opravy hudebních nástrojů.">
+  <meta property="og:url" content="https://kytarystekl.cz/">
+  <meta property="og:image" content="https://kytarystekl.cz/web-app-manifest-512x512.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Logo Kytary Štekl">
   <meta name="keywords" content="opravy kytar Plzeň, servis kytar Plzeň, prodej kytar Plzeň, Kytary Štekl, oprava hudebních nástrojů Plzeň, servis hudebních nástrojů Plzeň, zakázková výroba kytar, seřízení kytary, výměna strun, oprava smyčcových nástrojů">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -199,7 +211,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .music-notes span:nth-child(1){left:18%;animation-delay:.2s}
     .music-notes span:nth-child(2){left:49%;animation-delay:1.55s;font-size:1.45rem}
     .music-notes span:nth-child(3){left:74%;animation-delay:3.05s}
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease, transform .75s ease}
+    .reveal{opacity:1;transform:none;transition:opacity .75s ease, transform .75s ease}
     .reveal.in-view{opacity:1;transform:translateY(0)}
     .card.reveal:nth-child(2), .step.reveal:nth-child(2){transition-delay:.08s}
     .card.reveal:nth-child(3), .step.reveal:nth-child(3){transition-delay:.16s}
@@ -980,8 +992,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }
 
           .reveal {
-            opacity: 0;
-            transform: translateY(24px);
+            opacity: 1;
+            transform: none;
             transition: opacity 0.75s ease, transform 0.75s ease;
           }
 
@@ -1018,7 +1030,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }
 
           @media (max-width: 980px) {
-            .links {
+            .menu-ready .links {
               display: none;
               position: absolute;
               left: 20px;
@@ -1033,11 +1045,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               box-shadow: var(--shadow);
             }
 
-            .links.open {
+            .menu-ready .links.open {
               display: flex;
             }
 
-            .menu-toggle {
+            .menu-ready .menu-toggle {
               display: inline-grid;
               place-items: center;
             }
@@ -1223,7 +1235,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               padding: 10px;
             }
           }
-        </style>
+            /* Navigation stays in normal flow until its controls are initialized. */
+    @media (max-width: 980px) {
+      header:not(.menu-ready) .nav {height:auto;min-height:78px;flex-wrap:wrap;padding-block:16px}
+      header:not(.menu-ready) .links {display:flex;flex-basis:100%;flex-wrap:wrap;gap:1rem}
+    }
+    .reveal.reveal-pending {opacity:0;transform:translateY(24px)}
+    @media (prefers-reduced-motion: reduce) {
+      .reveal.reveal-pending {opacity:1;transform:none}
+    }
+    .faq-list {display:grid;gap:14px}
+    .faq-list details {background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:1.25rem}
+    .faq-list summary {cursor:pointer;font-weight:800;color:var(--gold)}
+    .faq-list summary:focus-visible {outline:2px solid var(--gold);outline-offset:5px}
+    .faq-list p {color:var(--muted);line-height:1.7;margin-bottom:0}
+  </style>
       </head>
 
       <body>
@@ -1245,11 +1271,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <a href="#sluzby">Služby</a>
               <a href="#zakazky">Zakázková výroba</a>
               <a href="#cenik">Ceník</a>
+              <a href="#faq">FAQ</a>
               <a href="#kontakt">Kontakt</a>
             </nav>
 
             <a class="btn btn-primary" href="tel:+420603962629">Zavolat</a>
-            <button class="menu-toggle" id="toggle" aria-label="Otevřít menu">☰</button>
+            <button class="menu-toggle" id="toggle" type="button" aria-controls="menu" aria-label="Otevřít menu">☰</button>
           </div>
         </header>
 
@@ -1508,6 +1535,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
           </section>
 
+          <section id="faq" aria-labelledby="faq-title">
+            <div class="container">
+              <div class="section-head">
+                <div>
+                  <div class="eyebrow">Časté dotazy</div>
+                  <h2 id="faq-title">Co vás zajímá před návštěvou?</h2>
+                </div>
+              </div>
+              <div class="faq-list">
+                <details open>
+                  <summary>Je potřeba návštěvu dílny domluvit předem?</summary>
+                  <p>Návštěvu doporučujeme domluvit předem na <a href="tel:+420603962629">+420 603 962 629</a>, aby byl na váš nástroj dostatek času.</p>
+                </details>
+                <details open>
+                  <summary>Kolik stojí oprava nástroje?</summary>
+                  <p>Ceny najdete v <a href="#cenik">orientačním ceníku</a>. Přesná cena závisí na stavu nástroje a rozsahu opravy. Opravy laku a složitější zásahy řešíme individuálně.</p>
+                </details>
+                <details open>
+                  <summary>Pomůžete mi s výběrem kytary?</summary>
+                  <p>Ano, poradíme s výběrem velikosti, typu nástroje a vybavení pro začátečníky i pokročilé. Pokud konkrétní nástroj není skladem, je možné jej po domluvě objednat.</p>
+                </details>
+              </div>
+            </div>
+          </section>
           <section id="kontakt">
             <div class="container contact">
               <div class="contact-card reveal">
@@ -1640,6 +1691,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             );
           }
 
+          if (toggle && menu) toggle.closest("header").classList.add("menu-ready");
+
           const revealItems = document.querySelectorAll(".reveal");
 
           if ("IntersectionObserver" in window && revealItems.length) {
@@ -1647,6 +1700,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               (entries) => {
                 entries.forEach((entry) => {
                   if (entry.isIntersecting) {
+                    entry.target.classList.remove("reveal-pending");
                     entry.target.classList.add("in-view");
                     revealObserver.unobserve(entry.target);
                   }
@@ -1655,7 +1709,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               { threshold: 0.14 }
             );
 
-            revealItems.forEach((item) => revealObserver.observe(item));
+            revealItems.forEach((item) => {
+              revealObserver.observe(item);
+              item.classList.add("reveal-pending");
+            });
           } else {
             revealItems.forEach((item) => item.classList.add("in-view"));
           }
